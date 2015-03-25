@@ -14,14 +14,15 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                 events: '=',
                 searchFilter: '=?',
                 translationTexts: '=',
-                groupBy: '@'
+                groupBy: '@',
+                ngDisabled: '='
             },
             template: function (element, attrs) {
                 var checkboxes = attrs.checkboxes ? true : false;
                 var groups = attrs.groupBy ? true : false;
 
                 var template = '<div class="multiselect-parent btn-group dropdown-multiselect">';
-                template += '<button type="button" class="dropdown-toggle" ng-class="settings.buttonClasses" ng-click="toggleDropdown()">{{getButtonText()}}&nbsp;<span class="caret"></span></button>';
+                template += '<button type="button" class="dropdown-toggle" ng-class="settings.buttonClasses" ng-click="toggleDropdown()" ng-disabled="ngDisabled">{{getButtonText()}}&nbsp;<span class="caret"></span></button>';
                 template += '<ul class="dropdown-menu dropdown-menu-form" ng-style="{display: open ? \'block\' : \'none\', height : settings.scrollable ? settings.scrollableHeight : \'auto\' }" style="overflow: scroll" >';
                 template += '<li ng-hide="!settings.showCheckAll || settings.selectionLimit > 0"><a data-ng-click="selectAll()"><span class="glyphicon glyphicon-ok"></span>  {{texts.checkAll}}</a>';
                 template += '<li ng-show="settings.showUncheckAll"><a data-ng-click="deselectAll();"><span class="glyphicon glyphicon-remove"></span>   {{texts.uncheckAll}}</a></li>';
