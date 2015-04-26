@@ -49,3 +49,7 @@ http://dotansimha.github.io/angularjs-dropdown-multiselect/
 ## TODO:
 	- Feel free to send me more requests for features - open an issue with "feature request" tag - Thanks!
 	- Keyboard support.
+	- 
+# Added Required and ngModel support
+Replaced selected-model as ng-model
+Add ms-required in case of setting the element as a required field
