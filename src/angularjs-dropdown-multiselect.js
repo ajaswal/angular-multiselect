@@ -57,9 +57,25 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
       },
       link: function ($scope, $element, $attrs, ngModelCtrl) {
         $attrs.msRequired = ($attrs.msRequired === "") ? true : false;
+        
+        $scope.$watchCollection("ngModelCtrl.$modelValue", function (){
+            if ($scope.singleSelection) {
+                if(ngModelCtrl.$modelValue[$scope.settings.externalIdProp])
+                    $attrs.msRequired && ngModelCtrl.$setValidity("required",true)
+                else
+                    $attrs.msRequired && ngModelCtrl.$setValidity("required",false)
+            }
+            else {
+                if(ngModelCtrl.$modelValue.length == 0){
+                    // console.log("a")
+                    $attrs.msRequired && ngModelCtrl.$setValidity("required",false)
+                }
+                else
+                    $attrs.msRequired && ngModelCtrl.$setValidity("required",true)
+            }
+        })
 
-        $attrs.msRequired && ngModelCtrl.$setValidity("required",false)
-
+        
         var $dropdownTrigger = $element.children()[0];
         
         $scope.toggleDropdown = function () {
@@ -253,7 +269,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
         };
 
         $scope.setSelectedItem = function (id, dontRemove) {
-         
+
           $attrs.msRequired && ngModelCtrl.$setValidity("required",true)
           var viewValue = {}
 
@@ -289,7 +305,6 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
           }
           
           if(ngModelCtrl.$modelValue.length == 0){
-            console.log("aaa")
             $attrs.msRequired && ngModelCtrl.$setValidity("required",false)
           }
         };
@@ -303,6 +318,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
         };
 
         $scope.externalEvents.onInitDone();
+
       }
     };
   }]);
