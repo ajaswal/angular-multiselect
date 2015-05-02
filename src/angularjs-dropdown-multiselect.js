@@ -57,8 +57,10 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
       },
       link: function ($scope, $element, $attrs, ngModelCtrl) {
         $attrs.msRequired = ($attrs.msRequired === "") ? true : false;
-        
-        $scope.$watchCollection("ngModelCtrl.$modelValue", function (){
+        $scope.$watchCollection(function(){
+            return ngModelCtrl.$modelValue;
+          }, function (){
+            
             if ($scope.singleSelection) {
                 if(ngModelCtrl.$modelValue[$scope.settings.externalIdProp])
                     $attrs.msRequired && ngModelCtrl.$setValidity("required",true)
