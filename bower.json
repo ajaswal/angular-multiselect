@@ -1,6 +1,6 @@
 {
   "name": "angularjs-multiselect-dropdown",
-  "version": "2.0.4",
+  "version": "2.0.6",
   "authors": [
     "Ajay Aswal <aswal.ajay@hotmail.com>",
     "Jibin George <mail@jibingeorge.com>"
@@ -28,6 +28,6 @@
     "angular-route": "~1.2.0",
     "lodash": "~2.4.1",
     "bootstrap": "~3.1.1",
-    "angular-highlightjs": "~0.2.7",
+    "angular-highlightjs": "~0.2.7"
   }
 }
