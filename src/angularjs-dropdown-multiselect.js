@@ -289,6 +289,10 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
             angular.extend(viewValue, finalObj);
             ngModelCtrl.$setViewValue(viewValue)
             $scope.externalEvents.onItemSelect(finalObj);
+            if ($scope.settings.closeOnSelect) {
+              $scope.open = false;
+            }
+
             if(!ngModelCtrl.$modelValue[$scope.settings.externalIdProp])
               $attrs.msRequired && ngModelCtrl.$setValidity("required",false)
             return;
